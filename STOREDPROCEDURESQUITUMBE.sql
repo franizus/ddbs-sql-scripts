@@ -18,6 +18,7 @@ CREATE PROCEDURE registrarPROFESOR
    @FECHA_SALIDA	date
 AS 
 BEGIN 
+	set xact_abort oN
 	begin distributed transaction 
 		 INSERT INTO V_PROFESOR
 		 ( 

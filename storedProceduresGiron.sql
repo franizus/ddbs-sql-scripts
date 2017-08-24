@@ -7,12 +7,13 @@ select * from CARRERA_GIRON
 
 CREATE PROCEDURE registrarCARRERA
    @ID_CARRERA           int,
-   @NOMBRE               char(20),
+   @NOMBRE               varchar(20),
    @N_SEMESTRES          int,
    @CAMPUS               int,
    @NODO                 int
 AS 
 BEGIN 
+	set xact_abort oN
 	begin distributed transaction 
 		 INSERT INTO V_CARRERA
 		 ( 
@@ -36,12 +37,13 @@ go
 
 CREATE PROCEDURE actualizarCARRERA
    @ID_CARRERA           int,
-   @NOMBRE               char(20),
+   @NOMBRE               varchar(20),
    @N_SEMESTRES          int,
    @CAMPUS               int,
    @NODO                 int
 AS 
 BEGIN 
+	set xact_abort oN
 	begin distributed transaction 
 		 UPDATE V_CARRERA SET
 			   NOMBRE = @NOMBRE,
@@ -71,6 +73,7 @@ CREATE PROCEDURE registrarPROFESOR
    @FECHA_SALIDA	date
 AS 
 BEGIN 
+	set xact_abort oN
 	begin distributed transaction
 		 INSERT INTO V_PROFESOR
 		 ( 
@@ -93,28 +96,19 @@ BEGIN
 			   @NODO
 		 ) 
 	commit
-		 INSERT INTO PROFESOR_NOMINA
-		 ( 
-			   ID_PRO,
-			   SALARIO,
-			   FECHA_INICIO,
-			   FECHA_SALIDA
-		 ) 
-		 VALUES 
-		 ( 
-			   @ID_PROF,
-			   @SALARIO,
-			   @FECHA_INICIO,
-			   @FECHA_SALIDA
-		 ) 
+	INSERT INTO PROFESOR_NOMINA
+	( 
+		ID_PRO,
+		SALARIO,
+		FECHA_INICIO,
+		FECHA_SALIDA
+	) 
+	VALUES 
+	( 
+		@ID_PROF,
+		@SALARIO,
+		@FECHA_INICIO,
+		@FECHA_SALIDA
+	) 
 END 
 go
-
-
-
-
-
-
-
-
-
