@@ -200,20 +200,23 @@ go
 /*==============================================================*/
 create table CARRERA_GIRON (
    ID_CARRERA           int                  not null,
-   NOMBRE               char(20)             not null,
+   NOMBRE               varchar(20)          not null,
    N_SEMESTRES          int                  not null,
    CAMPUS               int                  not null,
    NODO                 int                  not null,
    constraint PK_CARRERA_GIRON primary key (ID_CARRERA)
 )
 go
+ALTER TABLE CARRERA_GIRON ALTER COLUMN NOMBRE  
+            varchar(20) COLLATE Latin1_General_CI_AS NOT NULL;  
+GO  
 
 /*==============================================================*/
 /* Table: CATEGORIA                                             */
 /*==============================================================*/
 create table CATEGORIA (
    ID_CATEGORIA         int                  not null,
-   NOM_CAT              char(20)             not null,
+   NOM_CAT              varchar(20)             not null,
    constraint PK_CATEGORIA primary key (ID_CATEGORIA)
 )
 go
@@ -224,8 +227,8 @@ go
 create table ESTUDIANTE_GIRON (
    ID_ESTUDIANTE        int                  not null,
    ID_CARRERA           int                  null,
-   NOMBRE_EST           char(10)             not null,
-   APELLIDO_EST         char(10)             not null,
+   NOMBRE_EST           varchar(10)             not null,
+   APELLIDO_EST         varchar(10)             not null,
    EMAIL_EST            varchar(50)          null,
    CI_EST               varchar(10)          not null,
    FECHA_INICIO         datetime             not null,
@@ -234,6 +237,18 @@ create table ESTUDIANTE_GIRON (
    constraint PK_ESTUDIANTE_GIRON primary key (ID_ESTUDIANTE)
 )
 go
+ALTER TABLE ESTUDIANTE_GIRON ALTER COLUMN NOMBRE_EST  
+            varchar(10) COLLATE Latin1_General_CI_AS NOT NULL;  
+GO  
+ALTER TABLE ESTUDIANTE_GIRON ALTER COLUMN APELLIDO_EST  
+            varchar(10) COLLATE Latin1_General_CI_AS NOT NULL;  
+GO  
+ALTER TABLE ESTUDIANTE_GIRON ALTER COLUMN EMAIL_EST  
+            varchar(50) COLLATE Latin1_General_CI_AS NOT NULL;  
+GO  
+ALTER TABLE ESTUDIANTE_GIRON ALTER COLUMN CI_EST  
+            varchar(10) COLLATE Latin1_General_CI_AS NOT NULL;  
+GO  
 
 /*==============================================================*/
 /* Index: ESTUDIANTE_CARRERA_FK                                 */
@@ -312,13 +327,16 @@ go
 /*==============================================================*/
 create table MATERIA_GIRON (
    ID_MATERIA           int                  not null,
-   NOMBRE               char(20)             not null,
+   NOMBRE               varchar(20)             not null,
    SEM_REF              int                  null,
    N_CREDITOS           int                  not null,
    NODO                 int                  not null,
    constraint PK_MATERIA_GIRON primary key (ID_MATERIA)
 )
 go
+ALTER TABLE MATERIA_GIRON ALTER COLUMN NOMBRE  
+            varchar(20) COLLATE Latin1_General_CI_AS NOT NULL;  
+GO 
 
 /*==============================================================*/
 /* Table: PROFESOR_DATOS_GIRON                                  */
@@ -326,14 +344,26 @@ go
 create table PROFESOR_DATOS_GIRON (
    ID_PROF              int                  not null,
    ID_CATEGORIA         int                  null,
-   NOMBRE_PROF          char(10)             not null,
-   APELLIDO_PROF        char(10)             not null,
+   NOMBRE_PROF          varchar(10)             not null,
+   APELLIDO_PROF        varchar(10)             not null,
    EMAIL_PROF           varchar(50)          null,
    CI_PROF              varchar(10)          not null,
    NODO                 int                  not null,
    constraint PK_PROFESOR_DATOS_GIRON primary key (ID_PROF)
 )
 go
+ALTER TABLE PROFESOR_DATOS_GIRON ALTER COLUMN NOMBRE_PROF  
+            varchar(10) COLLATE Latin1_General_CI_AS NOT NULL;  
+GO 
+ALTER TABLE PROFESOR_DATOS_GIRON ALTER COLUMN APELLIDO_PROF  
+            varchar(10) COLLATE Latin1_General_CI_AS NOT NULL;  
+GO 
+ALTER TABLE PROFESOR_DATOS_GIRON ALTER COLUMN EMAIL_PROF  
+            varchar(50) COLLATE Latin1_General_CI_AS NOT NULL;  
+GO
+ALTER TABLE PROFESOR_DATOS_GIRON ALTER COLUMN CI_PROF  
+            varchar(10) COLLATE Latin1_General_CI_AS NOT NULL;  
+GO
 
 /*==============================================================*/
 /* Index: ESTA_FK                                               */

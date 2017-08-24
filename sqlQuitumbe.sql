@@ -200,6 +200,9 @@ create table CARRERA_QUITUMBE (
    constraint PK_CARRERA_QUITUMBE primary key (ID_CARRERA)
 )
 go
+ALTER TABLE CARRERA_QUITUMBE ALTER COLUMN NOMBRE  
+            varchar(20) COLLATE Latin1_General_CI_AS NOT NULL;  
+GO
 
 /*==============================================================*/
 /* Table: CATEGORIA                                             */
@@ -258,6 +261,18 @@ create table ESTUDIANTE_QUITUMBE (
    constraint PK_ESTUDIANTE_QUITUMBE primary key (ID_ESTUDIANTE)
 )
 go
+ALTER TABLE ESTUDIANTE_QUITUMBE ALTER COLUMN NOMBRE_EST  
+            varchar(10) COLLATE Latin1_General_CI_AS NOT NULL;  
+GO  
+ALTER TABLE ESTUDIANTE_QUITUMBE ALTER COLUMN APELLIDO_EST  
+            varchar(10) COLLATE Latin1_General_CI_AS NOT NULL;  
+GO  
+ALTER TABLE ESTUDIANTE_QUITUMBE ALTER COLUMN EMAIL_EST  
+            varchar(50) COLLATE Latin1_General_CI_AS NOT NULL;  
+GO  
+ALTER TABLE ESTUDIANTE_QUITUMBE ALTER COLUMN CI_EST  
+            varchar(10) COLLATE Latin1_General_CI_AS NOT NULL;  
+GO  
 
 /*==============================================================*/
 /* Index: ESTUDIANTE_CARRERA_FK                                 */
@@ -305,13 +320,16 @@ go
 /*==============================================================*/
 create table MATERIA_QUITUMBE (
    ID_MATERIA           int                  not null,
-   NOMBRE               char(20)             not null,
+   NOMBRE               varchar(20)             not null,
    SEM_REF              int                  null,
    N_CREDITOS           int                  not null,
    NODO                 int                  not null,
    constraint PK_MATERIA_QUITUMBE primary key (ID_MATERIA)
 )
 go
+ALTER TABLE MATERIA_QUITUMBE ALTER COLUMN NOMBRE  
+            varchar(20) COLLATE Latin1_General_CI_AS NOT NULL;  
+GO 
 
 /*==============================================================*/
 /* Table: PROFESOR_DATOS_QUITUMBE                               */
@@ -327,6 +345,18 @@ create table PROFESOR_DATOS_QUITUMBE (
    constraint PK_PROFESOR_DATOS_QUITUMBE primary key (ID_PROF)
 )
 go
+ALTER TABLE PROFESOR_DATOS_QUITUMBE ALTER COLUMN NOMBRE_PROF  
+            varchar(10) COLLATE Latin1_General_CI_AS NOT NULL;  
+GO 
+ALTER TABLE PROFESOR_DATOS_QUITUMBE ALTER COLUMN APELLIDO_PROF  
+            varchar(10) COLLATE Latin1_General_CI_AS NOT NULL;  
+GO 
+ALTER TABLE PROFESOR_DATOS_QUITUMBE ALTER COLUMN EMAIL_PROF  
+            varchar(50) COLLATE Latin1_General_CI_AS NOT NULL;  
+GO
+ALTER TABLE PROFESOR_DATOS_QUITUMBE ALTER COLUMN CI_PROF  
+            varchar(10) COLLATE Latin1_General_CI_AS NOT NULL;  
+GO
 
 /*==============================================================*/
 /* Index: ESTA_FK                                               */

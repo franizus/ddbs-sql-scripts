@@ -5,11 +5,11 @@ commit
 
 select * from PROFESOR_DATOS_QUITUMBE
 
-ALTER PROCEDURE registrarPROFESOR
+CREATE PROCEDURE registrarPROFESOR
    @ID_PROF            int,
    @ID_CATEGORIA           int,
-   @NOMBRE_PROF             char(10),
-   @APELLIDO_PROF          char(10),
+   @NOMBRE_PROF             varchar(10),
+   @APELLIDO_PROF          varchar(10),
    @EMAIL_PROF          varchar(50),
    @CI_PROF           varchar(10),
    @NODO            int,
@@ -19,7 +19,7 @@ ALTER PROCEDURE registrarPROFESOR
 AS 
 BEGIN 
 	begin distributed transaction 
-		 INSERT INTO PROFESOR_DATOS_QUITUMBE
+		 INSERT INTO V_PROFESOR
 		 ( 
 			   ID_PROF,
 			   ID_CATEGORIA,
@@ -39,6 +39,8 @@ BEGIN
 			   @CI_PROF,
 			   @NODO
 		 ) 
+	commit
+	begin distributed transaction 
 		 INSERT INTO [WIN-PS6SN3G9U9I].UPS_GIRON.dbo.PROFESOR_NOMINA
 		 ( 
 			   ID_PRO,
