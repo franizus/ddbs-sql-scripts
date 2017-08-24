@@ -14,8 +14,10 @@ join MATERIA_GIRON mg
 on mcg.ID_MATERIA = mg.ID_MATERIA
 go
 
+select [Nombre Materia] from materiaCarreraGiron where not [Nombre Carrera]
+
 select * from materiaCarreraGiron
-where [Nombre Carrera] = 'Antropologia'
+where not [Nombre Carrera] = 'Antropologia'
 
 set xact_abort oN
 begin distributed transaction 

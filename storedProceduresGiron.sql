@@ -55,6 +55,30 @@ BEGIN
 END 
 go
 
+CREATE PROCEDURE registrarMATERIA_CARRERA
+   @ID_MATERIA           int,
+   @ID_CARRERA           int,
+   @NODO					int
+AS 
+BEGIN 
+	set xact_abort oN
+	begin distributed transaction 
+		 INSERT INTO V_MATERIA_CARRERA
+		 ( 
+			   ID_MATERIA,
+			   ID_CARRERA,
+			   NODO
+		 ) 
+		 VALUES 
+		 ( 
+			   @ID_MATERIA,
+			   @ID_CARRERA,
+			   @NODO
+		 ) 
+	commit
+END 
+go
+
 
 
 select * from PROFESOR_DATOS_GIRON
