@@ -38,6 +38,38 @@ from ESTUDIANTE_GIRON eg join CARRERA_GIRON cg
 on eg.ID_CARRERA = cg.ID_CARRERA
 go
 
+create view materiaGiron as
+select ID_MATERIA as 'ID', NOMBRE as 'Nombre', SEM_REF as 'Semestre Referencia', N_CREDITOS as 'No. de Creditos'
+from MATERIA_GIRON
+go
+
+create view carreraEstudianteGiron as
+select cg.NOMBRE as 'Nombre Carrera', eg.NOMBRE_EST + ' ' + eg.APELLIDO_EST as 'Nombre Estudiante'
+from CARRERA_GIRON cg join ESTUDIANTE_GIRON eg
+on eg.ID_CARRERA = cg.ID_CARRERA
+go
+
+create view estudianteMateriaGiron as
+select eg.NOMBRE_EST + ' ' + eg.APELLIDO_EST as 'Nombre Estudiante', mg.NOMBRE as 'Nombre Materia'
+from ESTUDIANTE_MATERIA_GIRON emg join ESTUDIANTE_GIRON eg
+on eg.ID_ESTUDIANTE = emg.ID_ESTUDIANTE
+join MATERIA_GIRON mg
+on mg.ID_MATERIA = emg.ID_MATERIA
+go
+
+create view profesorNombreGiron as
+select NOMBRE_PROF + ' ' + APELLIDO_PROF as 'Nombre Profesor'
+from PROFESOR_DATOS_GIRON
+go
+
+create view profesorMateriaGiron as
+select NOMBRE_PROF + ' ' + APELLIDO_PROF as 'Nombre Profesor', NOMBRE
+from PROFESOR_DATOS_GIRON pdg join PROFESOR_MATERIA_GIRON pmg
+on pdg.ID_PROF = pmg.ID_PROF
+join MATERIA_GIRON mg
+on mg.ID_MATERIA = pmg.ID_MATERIA
+go
+
 
 
 select [Nombre Materia] from materiaCarreraGiron where not [Nombre Carrera]

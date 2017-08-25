@@ -83,6 +83,110 @@ go
 
 
 
+CREATE PROCEDURE registrarMATERIA
+   @ID_MATERIA           int,
+   @NOMBRE               varchar(20),
+   @SEM_REF              int,
+   @N_CREDITOS           int,
+   @NODO                 int
+AS 
+BEGIN 
+	set xact_abort oN
+	begin distributed transaction 
+		 INSERT INTO V_MATERIA
+		 ( 
+			   ID_MATERIA,
+			   NOMBRE,
+			   SEM_REF,
+			   N_CREDITOS,
+			   NODO
+		 ) 
+		 VALUES 
+		 ( 
+			   @ID_MATERIA,
+			   @NOMBRE,
+			   @SEM_REF,
+			   @N_CREDITOS,
+			   @NODO
+		 ) 
+	commit
+END 
+go
+
+CREATE PROCEDURE actualizarMATERIA
+   @ID_MATERIA           int,
+   @NOMBRE               varchar(20),
+   @SEM_REF              int,
+   @N_CREDITOS           int,
+   @NODO                 int
+AS 
+BEGIN 
+	set xact_abort oN
+	begin distributed transaction 
+		 UPDATE V_MATERIA SET
+			   NOMBRE = @NOMBRE,
+			   SEM_REF = @SEM_REF,
+			   N_CREDITOS = @N_CREDITOS,
+			   NODO = @NODO
+		 WHERE ID_MATERIA = @ID_MATERIA
+	commit
+END 
+go
+
+
+
+CREATE PROCEDURE registrarESTUDIANTE_MATERIA
+   @ID_MATERIA           int,
+   @ID_ESTUDIANTE           int,
+   @NODO					int
+AS 
+BEGIN 
+	set xact_abort oN
+	begin distributed transaction 
+		 INSERT INTO V_ESTUDIANTE_MATERIA
+		 ( 
+			   ID_MATERIA,
+			   ID_ESTUDIANTE,
+			   NODO
+		 ) 
+		 VALUES 
+		 ( 
+			   @ID_MATERIA,
+			   @ID_ESTUDIANTE,
+			   @NODO
+		 ) 
+	commit
+END 
+go
+
+
+
+CREATE PROCEDURE registrarPROFESOR_MATERIA
+   @ID_MATERIA           int,
+   @ID_PROF	             int,
+   @NODO					int
+AS 
+BEGIN 
+	set xact_abort oN
+	begin distributed transaction 
+		 INSERT INTO V_PROFESOR_MATERIA
+		 ( 
+			   ID_MATERIA,
+			   ID_PROF,
+			   NODO
+		 ) 
+		 VALUES 
+		 ( 
+			   @ID_MATERIA,
+			   @ID_PROF,
+			   @NODO
+		 ) 
+	commit
+END 
+go
+
+
+
 select * from PROFESOR_DATOS_GIRON
 SELECT * FROM PROFESOR_NOMINA
 
